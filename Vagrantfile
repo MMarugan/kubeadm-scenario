@@ -18,6 +18,7 @@ Vagrant.configure('2') do |config|
     n.vm.provision :shell, path: 'provision/shell/install_base.sh'
     n.vm.provision :shell, path: 'provision/shell/install_docker.sh'
     n.vm.provision :shell, path: 'provision/shell/install_kubetools.sh'
+    n.vm.provision :shell, path: 'provision/shell/config_kubemaster.sh'
     n.vm.provision :hosts do |p|
       p.add_host scenario_config['master']['ip'], [scenario_config['master']['hostname']]
     end
@@ -36,6 +37,7 @@ Vagrant.configure('2') do |config|
       n.vm.provision :shell, path: 'provision/shell/install_base.sh'
       n.vm.provision :shell, path: 'provision/shell/install_docker.sh'
       n.vm.provision :shell, path: 'provision/shell/install_kubetools.sh'
+      n.vm.provision :shell, path: 'provision/shell/config_kubenode.sh'
       n.vm.provision :hosts do |p|
         p.add_host node['ip'], [node['hostname']]
       end
