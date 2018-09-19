@@ -6,6 +6,7 @@ scenario_config_file = File.expand_path('config/default.yml', __dir__)
 scenario_config      = YAML.load_file(scenario_config_file)
 
 Vagrant.configure('2') do |config|
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", rsync__exclude: ".git/"
   config.vm.define scenario_config['master']['hostname'] do |n|
     n.vm.box      = scenario_config['master']['box']
     n.vm.hostname = scenario_config['master']['hostname']
